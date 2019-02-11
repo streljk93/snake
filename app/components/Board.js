@@ -26,7 +26,7 @@ snake.components.Board = snake.components.Board
             }
         }
 
-        draw();
+        autoChangeSnakePosition(-1, 0);
     }
 
     /**
@@ -36,6 +36,14 @@ snake.components.Board = snake.components.Board
      */
     function changeSnakePosition(x, y) {
         Snake.changePosition(x, y);
+
+        draw();
+    }
+
+    function autoChangeSnakePosition(x, y) {
+        setInterval(function () {
+            changeSnakePosition(x, y);
+        }, config.application.speed);
     }
 
     function makeNodeBoard() {
@@ -60,6 +68,8 @@ snake.components.Board = snake.components.Board
         var boardNode = makeNodeBoard(),
             size = squares.length,
             square,
+            squareCommon,
+            squareSnake,
             rowNode,
             cellNode,
             row,
@@ -68,9 +78,20 @@ snake.components.Board = snake.components.Board
         for (row = 0; row < size; row++) {
             rowNode = makeNodeRow();
             for (cell = 0; cell < size; cell++) {
-                square = squares[row][cell];
-                cellNode = square.makeNode();
 
+                // get squares
+                squareSnake = Snake.getSquare(cell, row);
+                squareCommon = squares[row][cell];
+
+                // check that mount
+                if (squareSnake) {
+                    square = squareSnake;
+                } else {
+                    square = squareCommon;
+                }
+
+                // mount
+                cellNode = square.makeNode();
                 rowNode.append(cellNode);
             }
             boardNode.append(rowNode);
@@ -81,7 +102,8 @@ snake.components.Board = snake.components.Board
     }
 
     return {
-        changeSnakePosition: changeSnakePosition,
+        initial: initial,
+        autoChangeSnakePosition: autoChangeSnakePosition,
     };
 
 })(

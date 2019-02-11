@@ -28,7 +28,7 @@ snake.components = snake.components || {};
             node.style.borderColor = 'black';
             node.style.width = config.square.size + 'px';
             node.style.height = config.square.size + 'px';
-            node.style.height = this._color;
+            node.style.background = this._color;
             node.style.padding = 0;
             node.style.margin = 0;
 

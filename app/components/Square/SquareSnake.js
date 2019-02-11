@@ -15,13 +15,7 @@ snake.components = snake.components || {};
         this._color = 'black';
 
     };
-
     ownLib.inherit(SquareSnake, Square);
-
-    // public methods
-    SquareSnake.prototype = {
-        constructor: SquareSnake,
-    };
 
     // export
     snake.components.SquareSnake = SquareSnake;

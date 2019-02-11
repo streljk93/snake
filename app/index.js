@@ -1,6 +1,6 @@
 'use strict';
 
-var snake = snake || (function (Board) {
+var snake = snake || (function () {
 
     // constant
     var LEFT = 37,
@@ -9,23 +9,23 @@ var snake = snake || (function (Board) {
         DOWN = 40;
 
     function run() {
-
+        snake.components.Board.initial();
     }
 
     function moveLeft() {
-        Board.changeSnakePosition(-1, 0);
+        snake.components.Board.autoChangeSnakePosition(-1, 0);
     }
 
     function moveRight() {
-        Board.changeSnakePosition(1, 0);
+        snake.components.Board.autoChangeSnakePosition(1, 0);
     }
 
     function moveUp() {
-        Board.changeSnakePosition(0, 1);
+        snake.components.Board.autoChangeSnakePosition(0, 1);
     }
 
     function moveDown() {
-        Board.changeSnakePosition(0, -1);
+        snake.components.Board.autoChangeSnakePosition(0, -1);
     }
 
     function listenerMove() {
@@ -48,6 +48,4 @@ var snake = snake || (function (Board) {
         run: run,
     };
 
-})(snake.components.Board);
-
-snake.run();
+})();

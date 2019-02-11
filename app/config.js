@@ -3,6 +3,10 @@
 // main config of application
 snake.config = snake.config || {
 
+    application: {
+        speed: 1000,
+    },
+
     board: {
         size: 500,
         row: 10,

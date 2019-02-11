@@ -12,6 +12,22 @@ snake.components.Snake = snake.components.Snake || (function () {
         squares.push(square);
     }
 
+    function getSquare(x, y) {
+        var length = squares.length,
+            row,
+            square;
+
+        for (row = 0; row < length; row++) {
+            square = squares[row];
+
+            if (square.getX() === x && square.getY() === y) {
+                return square;
+            }
+        }
+
+        return null;
+    }
+
     function getTail() {
         return squares[squares.length - 1];
     }
@@ -37,6 +53,7 @@ snake.components.Snake = snake.components.Snake || (function () {
     
     return {
         initial: initial,
+        getSquare: getSquare,
         eat: eat,
         saveOldTail: saveOldTail,
         changePosition: changePosition,
