@@ -12,7 +12,7 @@ snake.components = snake.components || {};
         // extend params Parent
         Square.call(this, x, y);
 
-        this._color = 'white';
+        this._color = 'red';
 
     };
     ownLib.inherit(SquareApple, Square);

@@ -4,17 +4,17 @@
 snake.config = snake.config || {
 
     application: {
-        speed: 1000,
+        speed: 160,
     },
 
     board: {
         size: 500,
-        row: 10,
-        cell: 10,
+        row: 25,
+        cell: 25,
     },
 
     square: {
-        size: 50,
+        size: 20,
     },
 
 };

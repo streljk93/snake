@@ -3,41 +3,33 @@
 var snake = snake || (function () {
 
     // constant
-    var LEFT = 37,
-        RIGHT = 39,
-        UP = 38,
-        DOWN = 40;
+    var LEFT = 'KeyA',
+        RIGHT = 'KeyD',
+        UP = 'KeyW',
+        DOWN = 'KeyS',
+        beforeMove = {};
 
     function run() {
         snake.components.Board.initial();
     }
 
-    function moveLeft() {
-        snake.components.Board.autoChangeSnakePosition(-1, 0);
-    }
-
-    function moveRight() {
-        snake.components.Board.autoChangeSnakePosition(1, 0);
-    }
-
-    function moveUp() {
-        snake.components.Board.autoChangeSnakePosition(0, 1);
-    }
-
-    function moveDown() {
-        snake.components.Board.autoChangeSnakePosition(0, -1);
+    function move(x, y) {
+        var Board = snake.components.Board;
+        Board.autoChangeSnakePosition(x, y, beforeMove);
+        beforeMove.x = x;
+        beforeMove.y = y;
     }
 
     function listenerMove() {
         document.addEventListener('keypress', function (e) {
-            if (e.KeyCode === LEFT) {
-                moveLeft();
-            } else if (e.KeyCode === RIGHT) {
-                moveRight();
-            } else if (e.KeyCode === UP) {
-                moveUp();
-            } else if (e.KeyCode === DOWN) {
-                moveDown();
+            if (e.code === LEFT) {
+                move(-1, 0);
+            } else if (e.code === RIGHT) {
+                move(1, 0);
+            } else if (e.code === UP) {
+                move(0, -1);
+            } else if (e.code === DOWN) {
+                move(0, 1);
             }
         });
     };

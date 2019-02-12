@@ -1,7 +1,7 @@
 'use strict';
 
 snake.components = snake.components || {};
-snake.components.Snake = snake.components.Snake || (function () {
+snake.components.Snake = snake.components.Snake || (function (SquareSnake) {
 
     // [{x: 6, y: 7}, {x: 5, y: 7}, {x: 4, y: 7}]; // example snake
     // [square, square, square]
@@ -28,8 +28,16 @@ snake.components.Snake = snake.components.Snake || (function () {
         return null;
     }
 
+    function getSquares() {
+        return squares;
+    }
+
     function getTail() {
         return squares[squares.length - 1];
+    }
+
+    function getHead() {
+        return squares[0];
     }
 
     function saveOldTail() {
@@ -37,7 +45,12 @@ snake.components.Snake = snake.components.Snake || (function () {
     }
 
     function eat() {
-        squares.push(oldTail);
+        var square = new SquareSnake();
+
+        square.setX(oldTail.getX());
+        square.setY(oldTail.getY());
+
+        squares.push(square);
     }
 
     function changePosition(x, y, depth) {
@@ -53,10 +66,12 @@ snake.components.Snake = snake.components.Snake || (function () {
     
     return {
         initial: initial,
+        getSquares: getSquares,
+        getHead: getHead,
         getSquare: getSquare,
         eat: eat,
         saveOldTail: saveOldTail,
         changePosition: changePosition,
     };
     
-})();
+})(snake.components.SquareSnake);

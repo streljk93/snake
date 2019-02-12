@@ -23,8 +23,8 @@ snake.components = snake.components || {};
         makeNode: function () {
             var node = document.createElement('td');
 
-            node.style.borderWidth = '1px';
-            node.style.borderStyle = 'dashed';
+            node.style.borderWidth = '0px';
+            node.style.borderStyle = 'solid';
             node.style.borderColor = 'black';
             node.style.width = config.square.size + 'px';
             node.style.height = config.square.size + 'px';
